@@ -2,12 +2,151 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>rock-paper-scissors-master</title>
+    <meta
+      name="description"
+      content="A modern, responsive Rock, Paper, Scissors web application built with Vite and Tailwind CSS. Play against the computer, track scores, and enjoy a clean UI."
+    />
+    <script type="module" src="/src/js/main.js"></script>
+    <title>rock-paper-scissors</title>
   </head>
-  <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
+  <body class="flex flex-col items-center px-4 pt-8 md:pt-12">
+    <header
+      class="flex w-full max-w-[43.875rem] items-center justify-between rounded-xl border-[3px] border-header-outline py-3 pr-3 pl-4 md:rounded-2xl md:py-6 md:pr-6 md:pl-8"
+    >
+      <h1
+        class="text-[1.0625rem] leading-[0.9] font-bold uppercase md:text-[2.4rem]"
+      >
+        Rock<br />Paper<br />Scissors
+      </h1>
+      <div class="score-box">
+        <p class="score-label">Score</p>
+        <output id="score" class="score-value" aria-live="polite">12</output>
+      </div>
+    </header>
+
+    <main class="flex w-full flex-1 items-center justify-center py-10">
+      <section id="picker" class="picker" aria-labelledby="picker-title">
+        <h2 id="picker-title" class="sr-only">Choose your move</h2>
+        <img
+          src="./src/assets/images/bg-triangle.svg"
+          alt=""
+          class="absolute top-[23%] left-1/2 -z-10 w-[62%] -translate-x-1/2"
+        />
+        <button
+          type="button"
+          class="token token-btn token-paper"
+          data-choice="paper"
+          aria-label="Paper"
+        >
+          <span class="token-face"
+            ><img
+              src="./src/assets/images/icon-paper.svg"
+              alt="Paper icon"
+              class="token-icon"
+          /></span>
+        </button>
+        <button
+          type="button"
+          class="token token-btn token-scissors"
+          data-choice="scissors"
+          aria-label="Scissors"
+        >
+          <span class="token-face"
+            ><img
+              src="./src/assets/images/icon-scissors.svg"
+              alt="Scissors icon"
+              class="token-icon"
+          /></span>
+        </button>
+        <button
+          type="button"
+          class="token token-btn token-rock mx-auto"
+          data-choice="rock"
+          aria-label="Rock"
+        >
+          <span class="token-face"
+            ><img
+              src="./src/assets/images/icon-rock.svg"
+              alt="Rock icon"
+              class="token-icon"
+          /></span>
+        </button>
+      </section>
+
+      <section id="result" class="result" aria-labelledby="result-title" hidden>
+        <h2 id="result-title" class="sr-only">Round result</h2>
+        <div class="pick">
+          <h3 class="pick-title">You picked</h3>
+          <div id="player-pick" class="pick-slot"></div>
+        </div>
+        <div class="pick md:order-last">
+          <h3 class="pick-title">The house picked</h3>
+          <div id="house-pick" class="pick-slot">
+            <div class="token-placeholder"></div>
+          </div>
+        </div>
+        <div class="outcome" hidden>
+          <p id="outcome-text" class="outcome-text" role="status"></p>
+          <button id="play-again" type="button" class="btn-play">
+            Play again
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="flex w-full items-center justify-between pb-8 md:px-8">
+      <button
+        id="theme-toggle"
+        type="button"
+        class="btn-rules"
+        aria-label="Toggle theme"
+      >
+        Theme
+      </button>
+
+      <!-- حقوق النشر مخفية على الموبايل وتظهر من md فما فوق -->
+      <div class="hidden text-center text-xs md:block">
+        Challenge by
+        <a
+          href="https://www.frontendmentor.io?ref=challenge"
+          target="_blank"
+          class="text-main font-medium underline transition-opacity hover:opacity-80"
+          >Frontend Mentor</a
+        >. Coded by
+        <a
+          href="https://github.com/Ahmed-let-front"
+          target="_blank"
+          class="text-main font-medium underline transition-opacity hover:opacity-80"
+          >Ahmed Yasser</a
+        >.
+      </div>
+
+      <button
+        id="rules-open"
+        type="button"
+        class="btn-rules"
+        aria-haspopup="dialog"
+      >
+        Rules
+      </button>
+    </footer>
+
+    <dialog id="rules-modal" class="modal" aria-labelledby="rules-title">
+      <h2 id="rules-title" class="modal-title">Rules</h2>
+      <img
+        src="/src/assets/images/image-rules.svg"
+        alt="Game rules showing rules for rock, paper, and scissors"
+        class="h-auto w-full max-w-[19rem]"
+      />
+      <button
+        id="rules-close"
+        type="button"
+        class="modal-close"
+        aria-label="Close rules"
+      >
+        <img src="/src/assets/images/icon-close.svg" alt="Close icon" />
+      </button>
+    </dialog>
   </body>
 </html>
