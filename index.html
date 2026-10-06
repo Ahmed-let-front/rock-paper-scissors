@@ -5,19 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="A modern, responsive Rock, Paper, Scissors web application built with Vite and Tailwind CSS. Play against the computer, track scores, and enjoy a clean UI."
+      content="A modern, responsive Rock, Paper, Scissors, Lizard, Spock web application built with Vite and Tailwind CSS. Play against the computer, track scores, and enjoy a clean UI."
     />
     <script type="module" src="/src/js/main.js"></script>
-    <title>rock-paper-scissors</title>
+    <title>rock-paper-scissors-lizard-spock</title>
   </head>
   <body class="flex flex-col items-center px-4 pt-8 md:pt-12">
     <header
-      class="flex w-full max-w-[43.875rem] items-center justify-between rounded-xl border-[3px] border-header-outline py-3 pr-3 pl-4 md:rounded-2xl md:py-6 md:pr-6 md:pl-8"
+      class="flex w-full max-w-[45rem] items-center justify-between rounded-xl border-[3px] border-header-outline py-3 pr-3 pl-4 md:rounded-2xl md:py-6 md:pr-6 md:pl-8"
     >
-      <h1
-        class="text-[1.0625rem] leading-[0.9] font-bold uppercase md:text-[2.4rem]"
-      >
-        Rock<br />Paper<br />Scissors
+      <h1 class="text-sm leading-[0.9] font-bold uppercase md:text-2xl">
+        Rock<br />Paper<br />Scissors<br />Lizard<br />Spock
       </h1>
       <div class="score-box">
         <p class="score-label">Score</p>
@@ -29,23 +27,10 @@
       <section id="picker" class="picker" aria-labelledby="picker-title">
         <h2 id="picker-title" class="sr-only">Choose your move</h2>
         <img
-          src="./src/assets/images/bg-triangle.svg"
+          src="/src/assets/images/bg-pentagon.svg"
           alt=""
-          class="absolute top-[23%] left-1/2 -z-10 w-[62%] -translate-x-1/2"
+          class="absolute top-[15.8%] left-[15.3%] -z-10 w-[69.4%]"
         />
-        <button
-          type="button"
-          class="token token-btn token-paper"
-          data-choice="paper"
-          aria-label="Paper"
-        >
-          <span class="token-face"
-            ><img
-              src="./src/assets/images/icon-paper.svg"
-              alt="Paper icon"
-              class="token-icon"
-          /></span>
-        </button>
         <button
           type="button"
           class="token token-btn token-scissors"
@@ -54,21 +39,60 @@
         >
           <span class="token-face"
             ><img
-              src="./src/assets/images/icon-scissors.svg"
-              alt="Scissors icon"
+              src="/src/assets/images/icon-scissors.svg"
+              alt=""
               class="token-icon"
           /></span>
         </button>
         <button
           type="button"
-          class="token token-btn token-rock mx-auto"
+          class="token token-btn token-paper"
+          data-choice="paper"
+          aria-label="Paper"
+        >
+          <span class="token-face"
+            ><img
+              src="/src/assets/images/icon-paper.svg"
+              alt=""
+              class="token-icon"
+          /></span>
+        </button>
+        <button
+          type="button"
+          class="token token-btn token-rock"
           data-choice="rock"
           aria-label="Rock"
         >
           <span class="token-face"
             ><img
-              src="./src/assets/images/icon-rock.svg"
-              alt="Rock icon"
+              src="/src/assets/images/icon-rock.svg"
+              alt=""
+              class="token-icon"
+          /></span>
+        </button>
+        <button
+          type="button"
+          class="token token-btn token-lizard"
+          data-choice="lizard"
+          aria-label="Lizard"
+        >
+          <span class="token-face"
+            ><img
+              src="/src/assets/images/icon-lizard.svg"
+              alt=""
+              class="token-icon"
+          /></span>
+        </button>
+        <button
+          type="button"
+          class="token token-btn token-spock"
+          data-choice="spock"
+          aria-label="Spock"
+        >
+          <span class="token-face"
+            ><img
+              src="/src/assets/images/icon-spock.svg"
+              alt=""
               class="token-icon"
           /></span>
         </button>
@@ -99,7 +123,7 @@
       <button
         id="theme-toggle"
         type="button"
-        class="btn-rules"
+        class="btns-footer"
         aria-label="Toggle theme"
       >
         Theme
@@ -110,13 +134,15 @@
         <a
           href="https://www.frontendmentor.io?ref=challenge"
           target="_blank"
-          class="text-main font-medium underline transition-opacity hover:opacity-80"
+          rel="noopener noreferrer"
+          class="font-medium underline transition-opacity hover:opacity-80"
           >Frontend Mentor</a
         >. Coded by
         <a
           href="https://github.com/Ahmed-let-front"
           target="_blank"
-          class="text-main font-medium underline transition-opacity hover:opacity-80"
+          rel="noopener noreferrer"
+          class="font-medium underline transition-opacity hover:opacity-80"
           >Ahmed Yasser</a
         >.
       </p>
@@ -124,7 +150,7 @@
       <button
         id="rules-open"
         type="button"
-        class="btn-rules"
+        class="btns-footer"
         aria-haspopup="dialog"
       >
         Rules
@@ -134,8 +160,8 @@
     <dialog id="rules-modal" class="modal" aria-labelledby="rules-title">
       <h2 id="rules-title" class="modal-title">Rules</h2>
       <img
-        src="/src/assets/images/image-rules.svg"
-        alt="Game rules showing rules for rock, paper, and scissors"
+        src="/src/assets/images/image-rules-bonus.svg"
+        alt="Scissors beat paper and lizard, paper beats rock and Spock, rock beats lizard and scissors, lizard beats Spock and paper, Spock beats scissors and rock"
         class="h-auto w-full max-w-[19rem]"
       />
       <button
@@ -144,7 +170,7 @@
         class="modal-close"
         aria-label="Close rules"
       >
-        <img src="/src/assets/images/icon-close.svg" alt="Close icon" />
+        <img src="/src/assets/images/icon-close.svg" alt="" />
       </button>
     </dialog>
   </body>

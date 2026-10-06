@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "license": "ISC",
+  "author": "ahmed-yasser-(uio)",
   "description": "rock-paper-scissors app",
   "homepage": "https://github.com/Ahmed-let-front/rock-paper-scissors#readme",
   "bugs": {

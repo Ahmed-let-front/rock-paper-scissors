@@ -14,6 +14,12 @@
   --color-rock-from: var(--rock-from);
   --color-rock-to: var(--rock-to);
   --color-rock-edge: var(--rock-edge);
+  --color-lizard-from: var(--lizard-from);
+  --color-lizard-to: var(--lizard-to);
+  --color-lizard-edge: var(--lizard-edge);
+  --color-spock-from: var(--spock-from);
+  --color-spock-to: var(--spock-to);
+  --color-spock-edge: var(--spock-edge);
   --color-dark-text: var(--dark-text);
   --color-score-text: var(--score-text);
   --color-face-from: var(--face-from);
@@ -65,11 +71,35 @@
   }
 
   .picker {
-    @apply relative isolate flex w-full max-w-[19.5rem] flex-wrap justify-between gap-y-3 md:max-w-[26rem] md:gap-y-6 lg:max-w-[29.75rem];
+    @apply relative isolate aspect-[471/462] w-full max-w-[19.5rem] md:max-w-[22rem] lg:max-w-[29.4rem];
+  }
+
+  .picker .token {
+    @apply absolute size-[30.8%] -translate-1/2;
+  }
+
+  .picker .token-scissors {
+    @apply top-[15.8%] left-1/2;
+  }
+
+  .picker .token-paper {
+    @apply top-[43.3%] left-[84.7%];
+  }
+
+  .picker .token-rock {
+    @apply top-[84.2%] left-[70.9%];
+  }
+
+  .picker .token-lizard {
+    @apply top-[84.2%] left-[29.1%];
+  }
+
+  .picker .token-spock {
+    @apply top-[43.3%] left-[15.3%];
   }
 
   .token {
-    @apply relative size-28 shrink-0 rounded-full min-[375px]:size-32 md:size-40 lg:size-[12.375rem];
+    @apply relative rounded-full;
   }
 
   .token-lg,
@@ -82,7 +112,7 @@
   }
 
   .token-btn {
-    @apply cursor-pointer transition-transform duration-150 hover:scale-105 active:scale-95;
+    @apply cursor-pointer transition-[scale] duration-150 hover:scale-105 active:scale-95;
   }
 
   .token-face {
@@ -93,16 +123,24 @@
     @apply w-[44%];
   }
 
-  .token-paper {
-    @apply bg-linear-to-b from-paper-from to-paper-to shadow-[0_5px_0_var(--color-paper-edge)] lg:shadow-[0_8px_0_var(--color-paper-edge)];
-  }
-
   .token-scissors {
     @apply bg-linear-to-b from-scissors-from to-scissors-to shadow-[0_5px_0_var(--color-scissors-edge)] lg:shadow-[0_8px_0_var(--color-scissors-edge)];
   }
 
+  .token-paper {
+    @apply bg-linear-to-b from-paper-from to-paper-to shadow-[0_5px_0_var(--color-paper-edge)] lg:shadow-[0_8px_0_var(--color-paper-edge)];
+  }
+
   .token-rock {
     @apply bg-linear-to-b from-rock-from to-rock-to shadow-[0_5px_0_var(--color-rock-edge)] lg:shadow-[0_8px_0_var(--color-rock-edge)];
+  }
+
+  .token-lizard {
+    @apply bg-linear-to-b from-lizard-from to-lizard-to shadow-[0_5px_0_var(--color-lizard-edge)] lg:shadow-[0_8px_0_var(--color-lizard-edge)];
+  }
+
+  .token-spock {
+    @apply bg-linear-to-b from-spock-from to-spock-to shadow-[0_5px_0_var(--color-spock-edge)] lg:shadow-[0_8px_0_var(--color-spock-edge)];
   }
 
   .result {
@@ -142,12 +180,12 @@
     @apply h-12 w-full max-w-[13.75rem] cursor-pointer rounded-lg bg-surface text-base font-semibold uppercase tracking-[0.15em] text-dark-text transition-colors hover:text-rock-from md:max-w-none;
   }
 
-  .btn-rules {
-    @apply cursor-pointer rounded-lg border border-fg px-8 py-2.5 text-base font-semibold uppercase tracking-[0.2em] text-fg transition-colors hover:bg-fg hover:text-canvas-to;
+  .btns-footer {
+    @apply cursor-pointer  rounded-lg border border-fg px-4 py-2 md:px-8 md:py-2.5 text-sm md:text-base font-semibold uppercase tracking-[0.2em]  transition-colors hover:bg-fg hover:text-canvas-to;
   }
 
   .modal {
-    @apply m-auto h-dvh max-h-none w-dvw max-w-none flex-col items-center justify-between rounded-none bg-surface px-8 py-12 text-dark-text open:flex md:h-auto md:w-[25rem] md:items-stretch md:justify-start md:gap-8 md:rounded-lg md:p-8 md:pb-10;
+    @apply m-auto h-dvh max-h-none w-dvw max-w-none flex-col items-center justify-between rounded-none bg-surface px-4 py-12 text-dark-text open:flex md:h-auto md:w-[25rem] md:items-stretch md:justify-start md:gap-8 md:rounded-lg md:p-8 md:pb-10;
   }
 
   .modal::backdrop {
@@ -155,7 +193,7 @@
   }
 
   .modal-title {
-    @apply text-[2rem] font-bold uppercase;
+    @apply text-center text-[2rem] font-bold uppercase md:text-left;
   }
 
   .modal-close {
