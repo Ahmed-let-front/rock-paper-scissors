@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="overflow-x-hidden">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,100 +23,106 @@
       </div>
     </header>
 
-    <main class="flex w-full flex-1 items-center justify-center py-10">
-      <section id="picker" class="picker" aria-labelledby="picker-title">
-        <h2 id="picker-title" class="sr-only">Choose your move</h2>
-        <img
-          src="/src/assets/images/bg-pentagon.svg"
-          alt="Pentagon background guide showing layout connections for game choices"
-          class="absolute top-[15.8%] left-[15.3%] -z-10 w-[69.4%]"
-        />
-        <button
-          type="button"
-          class="token token-btn token-scissors"
-          data-choice="scissors"
-          aria-label="Scissors"
-        >
-          <span class="token-face"
-            ><img
-              src="/src/assets/images/icon-scissors.svg"
-              alt="Scissors token graphic showing two blades"
-              class="token-icon"
-          /></span>
-        </button>
-        <button
-          type="button"
-          class="token token-btn token-paper"
-          data-choice="paper"
-          aria-label="Paper"
-        >
-          <span class="token-face"
-            ><img
-              src="/src/assets/images/icon-paper.svg"
-              alt="Paper token graphic showing a flat sheet"
-              class="token-icon"
-          /></span>
-        </button>
-        <button
-          type="button"
-          class="token token-btn token-rock"
-          data-choice="rock"
-          aria-label="Rock"
-        >
-          <span class="token-face"
-            ><img
-              src="/src/assets/images/icon-rock.svg"
-              alt="Rock token graphic showing a boulder"
-              class="token-icon"
-          /></span>
-        </button>
-        <button
-          type="button"
-          class="token token-btn token-lizard"
-          data-choice="lizard"
-          aria-label="Lizard"
-        >
-          <span class="token-face"
-            ><img
-              src="/src/assets/images/icon-lizard.svg"
-              alt="Lizard token graphic showing a reptile head"
-              class="token-icon"
-          /></span>
-        </button>
-        <button
-          type="button"
-          class="token token-btn token-spock"
-          data-choice="spock"
-          aria-label="Spock"
-        >
-          <span class="token-face"
-            ><img
-              src="/src/assets/images/icon-spock.svg"
-              alt="Spock token graphic showing a hand sign"
-              class="token-icon"
-          /></span>
-        </button>
-      </section>
-
-      <section id="result" class="result" aria-labelledby="result-title" hidden>
-        <h2 id="result-title" class="sr-only">Round result</h2>
-        <div class="pick">
-          <h3 class="pick-title">You picked</h3>
-          <div id="player-pick" class="pick-slot"></div>
-        </div>
-        <div class="pick md:order-last">
-          <h3 class="pick-title">The house picked</h3>
-          <div id="house-pick" class="pick-slot">
-            <div class="token-placeholder"></div>
-          </div>
-        </div>
-        <div class="outcome" hidden>
-          <p id="outcome-text" class="outcome-text" role="status"></p>
-          <button id="play-again" type="button" class="btn-play">
-            Play again
+    <main
+      class="flex w-full flex-1 items-center justify-center py-10"
+      aria-live="polite"
+      id="main"
+    >
+      <template id="picker-template">
+        <div id="picker" class="picker template-view">
+          <h2 class="sr-only">Choose your move</h2>
+          <img
+            src="/src/assets/images/bg-pentagon.svg"
+            alt="Pentagon background guide showing layout connections for game choices"
+            class="absolute top-[15.8%] left-[15.3%] -z-10 w-[69.4%]"
+          />
+          <button
+            type="button"
+            class="token token-btn token-scissors"
+            data-choice="scissors"
+            aria-label="Scissors"
+          >
+            <span class="token-face"
+              ><img
+                src="/src/assets/images/icon-scissors.svg"
+                alt="Scissors token graphic showing two blades"
+                class="token-icon"
+            /></span>
+          </button>
+          <button
+            type="button"
+            class="token token-btn token-paper"
+            data-choice="paper"
+            aria-label="Paper"
+          >
+            <span class="token-face"
+              ><img
+                src="/src/assets/images/icon-paper.svg"
+                alt="Paper token graphic showing a flat sheet"
+                class="token-icon"
+            /></span>
+          </button>
+          <button
+            type="button"
+            class="token token-btn token-rock"
+            data-choice="rock"
+            aria-label="Rock"
+          >
+            <span class="token-face"
+              ><img
+                src="/src/assets/images/icon-rock.svg"
+                alt="Rock token graphic showing a boulder"
+                class="token-icon"
+            /></span>
+          </button>
+          <button
+            type="button"
+            class="token token-btn token-lizard"
+            data-choice="lizard"
+            aria-label="Lizard"
+          >
+            <span class="token-face"
+              ><img
+                src="/src/assets/images/icon-lizard.svg"
+                alt="Lizard token graphic showing a reptile head"
+                class="token-icon"
+            /></span>
+          </button>
+          <button
+            type="button"
+            class="token token-btn token-spock"
+            data-choice="spock"
+            aria-label="Spock"
+          >
+            <span class="token-face"
+              ><img
+                src="/src/assets/images/icon-spock.svg"
+                alt="Spock token graphic showing a hand sign"
+                class="token-icon"
+            /></span>
           </button>
         </div>
-      </section>
+      </template>
+
+      <template id="result-template">
+        <div id="result" class="result template-view">
+          <h2 class="sr-only">Round result</h2>
+          <div class="pick">
+            <h3 class="pick-title">You picked</h3>
+            <div id="player-pick" class="pick-slot"></div>
+          </div>
+          <div class="pick md:order-last">
+            <h3 class="pick-title">The house picked</h3>
+            <div id="house-pick" class="pick-slot">
+              <div class="token-placeholder"></div>
+            </div>
+          </div>
+          <div class="outcome" hidden>
+            <p id="outcome-text" class="outcome-text" role="status"></p>
+            <button id="play-again" type="button" class="btn-play">Play again</button>
+          </div>
+        </div>
+      </template>
     </main>
 
     <footer class="flex w-full items-center justify-between pb-8 md:px-8">
@@ -183,10 +189,7 @@
           popovertarget="rules-modal"
           popovertargetaction="hide"
         >
-          <img
-            src="/src/assets/images/icon-close.svg"
-            alt="Close modal button icon"
-          />
+          <img src="/src/assets/images/icon-close.svg" alt="Close modal button icon" />
         </button>
       </div>
       <div class="h-full flex justify-center items-center">

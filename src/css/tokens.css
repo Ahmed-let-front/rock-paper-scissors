@@ -1,4 +1,5 @@
-:root {  --scissors-from: hsl(39, 89%, 49%);
+:root {
+  --scissors-from: hsl(39, 89%, 49%);
   --scissors-to: hsl(40, 84%, 53%);
   --scissors-edge: hsl(28, 76%, 44%);
   --paper-from: hsl(230, 89%, 62%);

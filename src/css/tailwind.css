@@ -1,7 +1,7 @@
-@import "tailwindcss";
-@import "./tokens.css";
-@import "@fontsource/barlow-semi-condensed/600.css";
-@import "@fontsource/barlow-semi-condensed/700.css";
+@import 'tailwindcss';
+@import './tokens.css';
+@import '@fontsource/barlow-semi-condensed/600.css';
+@import '@fontsource/barlow-semi-condensed/700.css';
 @custom-variant hover (&:hover);
 
 @theme inline {
@@ -38,7 +38,7 @@
 }
 
 @theme {
-  --font-sans: "Barlow Semi Condensed", sans-serif;
+  --font-sans: 'Barlow Semi Condensed', sans-serif;
 }
 
 @layer base {
@@ -144,7 +144,7 @@
   }
 
   .result {
-    @apply grid w-full max-w-[19.5rem] grid-cols-2 gap-x-4 gap-y-10 md:w-auto md:max-w-none md:grid-cols-[auto_auto] md:gap-x-16 md:gap-y-0 lg:gap-x-[4.5rem];
+    @apply grid w-full max-w-[19.5rem] grid-cols-2 gap-x-4 gap-y-10 md:w-auto md:max-w-none md:grid-cols-[auto_auto] md:gap-x-16 md:gap-y-0 lg:gap-x-[4.5rem] items-center;
   }
 
   .result:has(.outcome:not([hidden])) {
@@ -156,7 +156,7 @@
   }
 
   .pick-title {
-    @apply text-center text-[0.8125rem] font-bold uppercase tracking-[0.15em] min-[375px]:text-[0.9375rem] md:text-2xl;
+    @apply text-center text-[0.8rem] font-bold uppercase tracking-[0.15em] min-[375px]:text-[0.9rem] md:text-2xl;
   }
 
   .pick-slot {
@@ -164,8 +164,8 @@
   }
 
   .pick-slot.is-winner::before {
-    content: "";
-    @apply absolute inset-0 -z-10 rounded-full shadow-[0_0_0_25px_var(--color-ripple-1),0_0_0_55px_var(--color-ripple-2),0_0_0_85px_var(--color-ripple-3)] md:shadow-[0_0_0_40px_var(--color-ripple-1),0_0_0_85px_var(--color-ripple-2),0_0_0_130px_var(--color-ripple-3)] lg:shadow-[0_0_0_55px_var(--color-ripple-1),0_0_0_115px_var(--color-ripple-2),0_0_0_175px_var(--color-ripple-3)];
+    content: '';
+    @apply absolute inset-0 -z-10 rounded-full shadow-[0_0_0_25px_var(--color-ripple-1),0_0_0_35px_var(--color-ripple-2),0_0_0_55px_var(--color-ripple-3)] md:shadow-[0_0_0_40px_var(--color-ripple-1),0_0_0_65px_var(--color-ripple-2),0_0_0_100px_var(--color-ripple-3)] lg:shadow-[0_0_0_50px_var(--color-ripple-1),0_0_0_90px_var(--color-ripple-2),0_0_0_150px_var(--color-ripple-3)];
   }
 
   .outcome {
@@ -182,5 +182,39 @@
 
   .btns-footer {
     @apply cursor-pointer  rounded-lg border border-fg px-4 py-2 md:px-8 md:py-2.5 text-sm md:text-base font-semibold uppercase tracking-[0.2em]  transition-colors hover:bg-fg hover:text-canvas-to;
+  }
+  .template-view {
+    @apply animate-[animate-template_1s_forwards];
+  }
+  .template-close {
+    @apply animate-[animate-template-close_1s_forwards];
+  }
+}
+@keyframes animate-template {
+  0% {
+    transform: translateX(-60rem) scale(0.5);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(0rem) scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0rem) scale(1);
+    opacity: 1;
+  }
+}
+@keyframes animate-template-close {
+  0% {
+    transform: translateX(0rem) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(0rem) scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(-60rem) scale(0.5);
+    opacity: 0;
   }
 }
