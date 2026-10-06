@@ -183,20 +183,4 @@
   .btns-footer {
     @apply cursor-pointer  rounded-lg border border-fg px-4 py-2 md:px-8 md:py-2.5 text-sm md:text-base font-semibold uppercase tracking-[0.2em]  transition-colors hover:bg-fg hover:text-canvas-to;
   }
-
-  .modal {
-    @apply m-auto h-dvh max-h-none w-dvw max-w-none flex-col items-center justify-between rounded-none bg-surface px-4 py-12 text-dark-text open:flex md:h-auto md:w-[25rem] md:items-stretch md:justify-start md:gap-8 md:rounded-lg md:p-8 md:pb-10;
-  }
-
-  .modal::backdrop {
-    background-color: var(--color-overlay);
-  }
-
-  .modal-title {
-    @apply text-center text-[2rem] font-bold uppercase md:text-left;
-  }
-
-  .modal-close {
-    @apply cursor-pointer p-2 md:absolute md:right-6 md:top-7;
-  }
 }

@@ -28,7 +28,7 @@
         <h2 id="picker-title" class="sr-only">Choose your move</h2>
         <img
           src="/src/assets/images/bg-pentagon.svg"
-          alt=""
+          alt="Pentagon background guide showing layout connections for game choices"
           class="absolute top-[15.8%] left-[15.3%] -z-10 w-[69.4%]"
         />
         <button
@@ -40,7 +40,7 @@
           <span class="token-face"
             ><img
               src="/src/assets/images/icon-scissors.svg"
-              alt=""
+              alt="Scissors token graphic showing two blades"
               class="token-icon"
           /></span>
         </button>
@@ -53,7 +53,7 @@
           <span class="token-face"
             ><img
               src="/src/assets/images/icon-paper.svg"
-              alt=""
+              alt="Paper token graphic showing a flat sheet"
               class="token-icon"
           /></span>
         </button>
@@ -66,7 +66,7 @@
           <span class="token-face"
             ><img
               src="/src/assets/images/icon-rock.svg"
-              alt=""
+              alt="Rock token graphic showing a boulder"
               class="token-icon"
           /></span>
         </button>
@@ -79,7 +79,7 @@
           <span class="token-face"
             ><img
               src="/src/assets/images/icon-lizard.svg"
-              alt=""
+              alt="Lizard token graphic showing a reptile head"
               class="token-icon"
           /></span>
         </button>
@@ -92,7 +92,7 @@
           <span class="token-face"
             ><img
               src="/src/assets/images/icon-spock.svg"
-              alt=""
+              alt="Spock token graphic showing a hand sign"
               class="token-icon"
           /></span>
         </button>
@@ -123,9 +123,12 @@
       <button
         id="theme-toggle"
         type="button"
-        class="btns-footer"
+        class="btns-footer flex items-center justify-center"
         aria-label="Toggle theme"
       >
+        <svg class="size-3 md:size-5 mr-3" aria-hidden="true">
+          <use href="/src/assets/images/icon-moon.svg" />
+        </svg>
         Theme
       </button>
 
@@ -150,6 +153,8 @@
       <button
         id="rules-open"
         type="button"
+        popovertarget="rules-modal"
+        popovertargetaction="toggle"
         class="btns-footer"
         aria-haspopup="dialog"
       >
@@ -157,21 +162,40 @@
       </button>
     </footer>
 
-    <dialog id="rules-modal" class="modal" aria-labelledby="rules-title">
-      <h2 id="rules-title" class="modal-title">Rules</h2>
-      <img
-        src="/src/assets/images/image-rules-bonus.svg"
-        alt="Scissors beat paper and lizard, paper beats rock and Spock, rock beats lizard and scissors, lizard beats Spock and paper, Spock beats scissors and rock"
-        class="h-auto w-full max-w-[19rem]"
-      />
-      <button
-        id="rules-close"
-        type="button"
-        class="modal-close"
-        aria-label="Close rules"
-      >
-        <img src="/src/assets/images/icon-close.svg" alt="" />
-      </button>
+    <dialog
+      id="rules-modal"
+      popover
+      class="modal m-auto h-dvh max-h-none w-dvw max-w-none flex-col items-center rounded-none bg-surface px-4 py-12 text-dark-text open:flex md:h-auto md:w-[25rem] md:max-h-[30rem] md:rounded-xl md:p-8 md:pb-10 backdrop:bg-overlay duration-400 transition-all transition-discrete backdrop:duration-400 backdrop:transition-all backdrop:transition-discrete starting:backdrop:opacity-0 starting:open:-translate-y-[30rem] starting:open:opacity-0 opacity-0 -translate-y-[30rem] open:translate-0 open:opacity-100"
+      aria-labelledby="rules-title"
+    >
+      <div class="self-stretch flex justify-between items-center">
+        <h2
+          id="rules-title"
+          class="modal-title text-center text-[1.5rem] font-bold uppercase md:text-left"
+        >
+          Rules
+        </h2>
+        <button
+          id="rules-close"
+          type="button"
+          class="modal-close cursor-pointer"
+          aria-label="Close rules"
+          popovertarget="rules-modal"
+          popovertargetaction="hide"
+        >
+          <img
+            src="/src/assets/images/icon-close.svg"
+            alt="Close modal button icon"
+          />
+        </button>
+      </div>
+      <div class="h-full flex justify-center items-center">
+        <img
+          src="/src/assets/images/image-rules-bonus.svg"
+          alt="Scissors beat paper and lizard, paper beats rock and Spock, rock beats lizard and scissors, lizard beats Spock and paper, Spock beats scissors and rock"
+          class="w-[15rem] md:w-[19rem]"
+        />
+      </div>
     </dialog>
   </body>
 </html>
