@@ -29,6 +29,7 @@ const state = {
   playerPickType: '',
   housePick: '',
   statePlay: '',
+  score: 0,
   winnerEl: undefined,
 };
 
@@ -82,10 +83,13 @@ const handleShowSelctedPicked = type => {
   playerPick.innerHTML = HTML;
 };
 
+const updateScore = () => state.score++;
+
 const checkWinner = () => {
   const randomNum = Math.floor(Math.random() * CONFIG.total_choices_count);
   state.housePick = allStates[randomNum];
   if (gameRules[state.playerPickType].includes(state.housePick)) {
+    updateScore();
     state.statePlay = 'Won';
     state.winnerEl = document.getElementById('player-pick');
   } else if (state.playerPickType === state.housePick) state.statePlay = 'drew';
@@ -103,6 +107,7 @@ const howWinner = async () => {
 const updateResultDom = async () => {
   await wait(CONFIG.house_pick_delay_ms);
   const pickHouseEl = document.getElementById('house-pick');
+  const scoreEl = document.getElementById('score');
   const HTML = pickTemplate(state.housePick);
   pickHouseEl.innerHTML = HTML;
   await wait(CONFIG.play_again_delay_ms);
@@ -110,6 +115,7 @@ const updateResultDom = async () => {
   const outcomeText = document.getElementById('outcome-text');
   if (state.winnerEl) state.winnerEl.classList.add('is-winner');
   outcomeText.textContent = `You ${state.statePlay}`;
+  scoreEl.textContent = state.score;
   containerReset.removeAttribute('inert');
   containerReset.classList.add('outcome-view');
 };
@@ -129,7 +135,6 @@ const initEventListeners = () => {
     if (btnReset) showTemplate(elements.pickerTemplate);
   });
 };
-
 const init = async () => {
   showTemplate(elements.pickerTemplate);
   initEventListeners();
