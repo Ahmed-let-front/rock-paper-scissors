@@ -11,15 +11,16 @@
     <!-- Inline blocking script to apply saved theme instantly before first paint and prevent theme flash -->
 
     <script>
+      localStorage.removeItem('themeMode');
       (() => {
         const data = JSON.parse(localStorage.getItem('themeMode'))?.[0];
         if (!data) return;
         document.documentElement.classList = `overflow-x-hidden ${data}`;
       })();
     </script>
-    
+
     <title>rock-paper-scissors-lizard-spock</title>
-    <script type="module" crossorigin src="/rock-paper-scissors/assets/index-BGAvYcxP.js"></script>
+    <script type="module" crossorigin src="/rock-paper-scissors/assets/index-EOFLQiQ-.js"></script>
     <link rel="stylesheet" crossorigin href="/rock-paper-scissors/assets/index--XUls7h-.css">
   </head>
   <body class="flex flex-col items-center px-4 pt-8 md:pt-12">
