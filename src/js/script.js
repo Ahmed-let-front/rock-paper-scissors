@@ -64,18 +64,6 @@ const showTemplate = async template => {
   await removeCurrentView(appendNewTemplate.bind(null, template));
 };
 
-const handleClickInToken = () => {
-  elements.app.addEventListener('click', async e => {
-    const btn = e.target.closest('.token-btn');
-    if (!btn) return;
-    const type = btn.dataset.choice;
-    state.playerPickType = type;
-    await showTemplate(elements.resultTemplate);
-    handleShowSelctedPicked(state.playerPickType);
-    howWinner();
-  });
-};
-
 const pickTemplate = type => {
   return `
   <div class="token token-${type} size-28 shrink-0 rounded-full min-[375px]:size-32 md:size-48 lg:size-[18.3rem] starting:scale-0 starting:opacity-0 opacity-100 scale-100 duration-300">
@@ -106,6 +94,12 @@ const checkWinner = () => {
     state.winnerEl = document.getElementById('house-pick');
   }
 };
+
+const howWinner = async () => {
+  checkWinner();
+  await updateResultDom();
+};
+
 const updateResultDom = async () => {
   await wait(CONFIG.house_pick_delay_ms);
   const pickHouseEl = document.getElementById('house-pick');
@@ -120,14 +114,25 @@ const updateResultDom = async () => {
   containerReset.classList.add('outcome-view');
 };
 
-const howWinner = async () => {
-  checkWinner();
-  await updateResultDom();
+const initEventListeners = () => {
+  elements.app.addEventListener('click', async e => {
+    const btnToken = e.target.closest('.token-btn');
+    if (btnToken) {
+      const type = btnToken.dataset.choice;
+      state.playerPickType = type;
+      await showTemplate(elements.resultTemplate);
+      handleShowSelctedPicked(state.playerPickType);
+      howWinner();
+      return;
+    }
+    const btnReset = e.target.closest('#play-again');
+    if (btnReset) showTemplate(elements.pickerTemplate);
+  });
 };
 
 const init = async () => {
   showTemplate(elements.pickerTemplate);
-  handleClickInToken();
+  initEventListeners();
 };
 
 init();
