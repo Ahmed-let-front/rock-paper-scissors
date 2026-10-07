@@ -3,7 +3,6 @@ import paperIcon from '../assets/images/icon-paper.svg';
 import rockIcon from '../assets/images/icon-rock.svg';
 import lizardIcon from '../assets/images/icon-lizard.svg';
 import spockIcon from '../assets/images/icon-spock.svg';
-
 const CONFIG = {
   view_transition_duration_ms: 1000,
   house_pick_delay_ms: 3000,
@@ -20,12 +19,15 @@ const icons = {
 };
 
 const elements = {
+  themeToggle: document.getElementById('theme-toggle'),
+  themeType: document.getElementById('theme-type'),
   pickerTemplate: document.getElementById('picker-template'),
   resultTemplate: document.getElementById('result-template'),
   app: document.getElementById('main'),
 };
 
 const state = {
+  theme: ['', ''],
   playerPickType: '',
   housePick: '',
   statePlay: '',
@@ -120,6 +122,63 @@ const updateResultDom = async () => {
   containerReset.classList.add('outcome-view');
 };
 
+const setThemeModeInLocalStortge = theme => {
+  localStorage.setItem('themeMode', JSON.stringify(theme));
+};
+
+const getThemeModeFromLS = () => {
+  const data = JSON.parse(localStorage.getItem('themeMode'));
+  const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if (!data) {
+    state.theme = isDarkMode
+      ? ['dark', '/rock-paper-scissors/supassets/icon-moon.svg']
+      : ['light', '/rock-paper-scissors/supassets/icon-sun.svg'];
+    return;
+  }
+  state.theme = data;
+};
+
+const changeClassDoc = type => {
+  document.documentElement.classList = `overflow-x-hidden ${type}`;
+};
+
+const updateDomThemeBtn = themBtn => {
+  const [val, src] = themBtn;
+  const typeEl = elements.themeType;
+  const useEl = typeEl.closest('button').querySelector('use');
+  useEl.setAttribute('href', src);
+  typeEl.textContent = val;
+};
+
+const updateDomTheme = themeData => {
+  const [val, src] = themeData;
+  const typeEl = elements.themeType;
+  const useEl = typeEl.closest('button').querySelector('use');
+  changeClassDoc(val);
+  useEl.setAttribute('href', src);
+  typeEl.textContent = val;
+};
+
+const handlThemeToggle = () => {
+  elements.themeToggle.addEventListener('click', () => {
+    const typeEl = elements.themeType;
+    const type = typeEl.textContent === 'dark' ? typeEl.textContent : 'light';
+    const valSrc = {
+      dark: ['light', '/rock-paper-scissors/supassets/icon-sun.svg'],
+      light: ['dark', '/rock-paper-scissors/supassets/icon-moon.svg'],
+    };
+    const [val, src] = valSrc[type];
+    state.theme = [val, src];
+    setThemeModeInLocalStortge(state.theme);
+    updateDomTheme(state.theme);
+  });
+};
+
+const controlThemeModeLS = () => {
+  getThemeModeFromLS();
+  updateDomThemeBtn(state.theme);
+};
+
 const initEventListeners = () => {
   elements.app.addEventListener('click', async e => {
     const btnToken = e.target.closest('.token-btn');
@@ -136,8 +195,9 @@ const initEventListeners = () => {
   });
 };
 const init = async () => {
+  controlThemeModeLS();
   showTemplate(elements.pickerTemplate);
   initEventListeners();
+  handlThemeToggle();
 };
-
 init();

@@ -7,6 +7,17 @@
       name="description"
       content="A modern, responsive Rock, Paper, Scissors, Lizard, Spock web application built with Vite and Tailwind CSS. Play against the computer, track scores, and enjoy a clean UI."
     />
+
+    <!-- Inline blocking script to apply saved theme instantly before first paint and prevent theme flash -->
+
+    <script>
+      (() => {
+        const data = JSON.parse(localStorage.getItem('themeMode'))?.[0];
+        if (!data) return;
+        document.documentElement.classList = `overflow-x-hidden ${data}`;
+      })();
+    </script>
+    
     <script type="module" src="/src/js/main.js"></script>
     <title>rock-paper-scissors-lizard-spock</title>
   </head>
@@ -143,9 +154,9 @@
         aria-label="Toggle theme"
       >
         <svg class="size-3 md:size-5 mr-3" aria-hidden="true">
-          <use href="/src/assets/images/icon-moon.svg" />
+          <use href="/supassets/icon-moon.svg" />
         </svg>
-        dark
+        <span id="theme-type">dark</span>
       </button>
 
       <p class="hidden text-center text-xs md:block">
