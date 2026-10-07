@@ -19,7 +19,7 @@
       </h1>
       <div class="score-box">
         <p class="score-label">Score</p>
-        <output id="score" class="score-value" aria-live="polite">12</output>
+        <output id="score" class="score-value" aria-live="polite">0</output>
       </div>
     </header>
 
@@ -111,15 +111,25 @@
             <h3 class="pick-title">You picked</h3>
             <div id="player-pick" class="pick-slot"></div>
           </div>
+          <div class="outcome" id="containerReset" inert>
+            <p id="outcome-text" class="outcome-text" role="status"></p>
+            <button id="play-again" type="button" class="btn-play">Play again</button>
+          </div>
           <div class="pick md:order-last">
             <h3 class="pick-title">The house picked</h3>
             <div id="house-pick" class="pick-slot">
-              <div class="token-placeholder"></div>
+              <div class="token-placeholder flex justify-center items-center">
+                <div class="flex items-center justify-center space-x-2">
+                  <span
+                    class="size-3 md:size-4 bg-fg rounded-full animate-bounce [animation-delay:-0.3s]"
+                  ></span>
+                  <span
+                    class="size-3 md:size-4 bg-fg rounded-full animate-bounce [animation-delay:-0.15s]"
+                  ></span>
+                  <span class="size-3 md:size-4 bg-fg rounded-full animate-bounce"></span>
+                </div>
+              </div>
             </div>
-          </div>
-          <div class="outcome" hidden>
-            <p id="outcome-text" class="outcome-text" role="status"></p>
-            <button id="play-again" type="button" class="btn-play">Play again</button>
           </div>
         </div>
       </template>
@@ -135,7 +145,7 @@
         <svg class="size-3 md:size-5 mr-3" aria-hidden="true">
           <use href="/src/assets/images/icon-moon.svg" />
         </svg>
-        Theme
+        dark
       </button>
 
       <p class="hidden text-center text-xs md:block">
