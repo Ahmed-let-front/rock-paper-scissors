@@ -33,6 +33,7 @@ const state = {
   statePlay: '',
   score: 0,
   winnerEl: undefined,
+  busy: false,
 };
 
 const gameRules = {
@@ -110,16 +111,18 @@ const updateResultDom = async () => {
   await wait(CONFIG.house_pick_delay_ms);
   const pickHouseEl = document.getElementById('house-pick');
   const scoreEl = document.getElementById('score');
+  const againBtn = document.getElementById('play-again');
   const HTML = pickTemplate(state.housePick);
   pickHouseEl.innerHTML = HTML;
   await wait(CONFIG.play_again_delay_ms);
   const containerReset = document.getElementById('containerReset');
   const outcomeText = document.getElementById('outcome-text');
   if (state.winnerEl) state.winnerEl.classList.add('is-winner');
+  containerReset.removeAttribute('inert');
   outcomeText.textContent = `You ${state.statePlay}`;
   scoreEl.textContent = state.score;
-  containerReset.removeAttribute('inert');
   containerReset.classList.add('outcome-view');
+  againBtn.focus();
 };
 
 const setThemeModeInLocalStortge = theme => {
@@ -181,17 +184,24 @@ const controlThemeModeLS = () => {
 
 const initEventListeners = () => {
   elements.app.addEventListener('click', async e => {
+    if (state.busy) return;
     const btnToken = e.target.closest('.token-btn');
     if (btnToken) {
+      state.busy = true;
       const type = btnToken.dataset.choice;
       state.playerPickType = type;
       await showTemplate(elements.resultTemplate);
       handleShowSelctedPicked(state.playerPickType);
-      howWinner();
+      await howWinner();
+      state.busy = false;
       return;
     }
     const btnReset = e.target.closest('#play-again');
-    if (btnReset) showTemplate(elements.pickerTemplate);
+    if (btnReset) {
+      await showTemplate(elements.pickerTemplate);
+      const firstBtnToken = document.querySelector('.token-btn');
+      firstBtnToken.focus();
+    }
   });
 };
 const init = async () => {
