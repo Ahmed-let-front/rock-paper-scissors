@@ -65,7 +65,7 @@ git clone https://github.com/Ahmed-let-front/rock-paper-scissors.git
 ### 2. Navigate to the project directory:
 
 ```bash
-cd rest-countries
+cd rock-paper-scissors
 ```
 
 ### 3. Install dependencies:
